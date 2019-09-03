@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Proyección Inflacionaria</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" media="screen" />
+
+    
+    <!-- eel -->
+    <script type="text/javascript" src="/eel.js"></script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+
+    <!--Jquery-->
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.js"
+    integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
+    crossorigin="anonymous"></script>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+
+   
+</head>
+
+</head>
+<body>
+<center><img src="img/banner.png"></center>
+<div class="row align">
+    <form name="myForm" class="col s6">
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="Ejemplo: 1500" id="maxG" name="maxG" type="number" class="validate" onClick="javascript:changeTheImage()">
+                <label class="active" for="">Ingrese el número de generaciones</label>
+            </div>
+
+            <div class="input-field col s6">
+                <select id="seleG" name="seleG" onchange="javascript:changeTheImage1()">
+                    <option value="" disabled selected>Elija su opción</option>
+                    <option value="2">2do grado</option>
+                    <option value="3">3er grado</option>
+                    <option value="4">4to grado</option>
+                    <option value="5">5to grado</option>
+                    <option value="6">6to grado</option>
+                    <option value="7">7mo grado</option>
+                    <option value="8">8vo grado</option>
+                    <option value="9">9no grado</option>
+                </select>
+                <label>Escoja el grado de polinomio</label>
+            
+            </div>
+
+        </div>
+        <div class="col s12 borderDivs">
+            <div class="row marginDivs">
+                    
+                    <div class="input-field col s6">
+                            <input name="minG" placeholder="Ejemplo: 1000" id="minG" type="number" class="validate" onClick="javascript:changeTheImage2()">
+                            <label class="active" for="">Ingrese el número mínimo de generaciones</label>
+                    </div>    
+
+            </div>
+            <div class="row marginDivs">
+                    <div class="input-field col s6">
+                            <input placeholder="Ejemplo: 200" name="maxE" id="maxE" type="number" class="validate" onClick="javascript:changeTheImage3()">
+                            <label class="active" for="">Ingrese el número máximo de estancamiento</label>
+                    </div>
+            </div>
+            <div class="row marginDivs">
+                    <div class="input-field col s6">
+                            <input placeholder="Ejemplo: 2000" name="minE" id="minE" type="number" class="validate" onClick="javascript:changeTheImage4()">
+                            <label class="active" for="">Ingrese el número mínimo de error</label>
+                    </div>
+            </div>
+        </div>
+
+        
+
+        <div class="row radiosTop">
+    
+                <label class="radioMargin">
+                    <input class="with-gap" name="time" value="0" checked id="ra" type="radio"  />
+                    <span>Anual</span>
+                </label>
+            
+                <label class="radioMargin">
+                    <input class="with-gap" name="time"  value="1" id="rs" type="radio"  />
+                    <span>Semanal</span>
+                </label>
+
+                <label class="radioMargin">
+                    <input class="with-gap" name="time"  value="2" id="rp" type="radio"  />
+                    <span>Personalizado</span>
+                </label>
+
+                <button data-target="modalRubro" id="buttonRubro" class="btn modal-trigger">Agregar Rubro</button>
+
+                <div id="modalRubro" class="modal">
+                        <div class="modal-content">
+                          <h4>Agregar Rubro</h4>
+                          
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input onClick="javascript:rubroHelp()" id="rubroName" type="text" class="validate">
+                                    <label for="rubroName">Nombre: </label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <p id="rubroHelp"></p>
+                                </div>
+                            </div>
+                            
+                               
+                            <div class="row ">
+                                <div class="input-field col s6">
+                                  <input onClick="javascript:rubroHelp1()" id="rubroDate" type="text" class="datepicker">
+                                  <label for="rubroDate">Fechas: </label>
+                                </div>
+                            </div>
+                          
+                        
+                        <div class="row">
+                            <div class="input-field col s6">
+                                    <input onClick="javascript:rubroHelp2()" id="rubroValue" type="text" class="validate">
+                                    <label for="rubroValue">Valores: </label>
+                            </div>
+                        </div>
+                        
+                            
+                        </div>
+                    
+                        <div class="modal-footer">
+                          <button  type="submit" id="rubroContinue" class="modal-close waves-effect waves-green btn-flat"  onClick="javascript:rubroValues()">Continuar</button>
+                          <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
+                        </div>
+                    
+                 </div>
+            
+              
+        </div>
+        <div class="row">
+                <button class="btn waves-effect waves-light" type='button' id="buttonAction"  name="action" onClick="javascript:validate()">Empezar
+                    <i class="material-icons right">send</i>
+                </button>
+    
+                <button class="btn waves-effect waves-light" id="restartButton" type="submit" name="action" disabled>Reiniciar
+                        <i class="material-icons right">cached</i>
+                </button>
+
+                <button class="btn waves-effect waves-light" id="reportButton" type="button" name="action" onClick="javascript:generateReport()" disabled>Abrir reporte
+                        <i class="material-icons right">receipt</i>
+                </button>
+                <button class="btn waves-effect waves-light" id="resultsButton" type="button" name="action" onClick="javascript:openResults()" disabled>Documentos
+                        <i class="material-icons right">attach_file</i>
+                </button>
+        </div>
+        
+        
+    </form>
+
+    <div class="col s6 images" id="images">
+        <img src="./img/logo.png" id="imageChange" alt="Smiley face" height="620" width="600" >
+    </div>
+
+
+    <div class="col s6 gif" id="gif">
+
+            <img src="./img/waiting.gif" id="gifChange" alt="Smiley face" height="400" width="600" >
+
+            <select id="selectGraf" onchange="intervalManager(true);">
+                <option value="1" disabled selected >Elija el tipo de gráfica</option>
+                <option value="3">Gráfica estilo 1</option>
+                <option value="2">Gráfica estilo 2</option>
+                <option value="1">Gráfica estilo 1 (Animado)</option>
+                <option value="0">Gráfica estilo 2 (Animado)</option>
+            </select>
+
+            <button data-target="modal1" id="modalButton" class="btn modal-trigger">Mostrar Resultados</button>
+            
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>Resultados:</h4>
+                    <div class="row">
+                            <div class="col s6" >
+                             <span id="result1">1 mes / 1 día:</span> 
+                              <div class="input-field inline">
+                                <input id="inputRe1" type="number" disabled >
+                               
+                              </div>
+                            </div>
+        
+                            <div class="col s6">
+                                <span id="result2">3 meses / 3 días:</span> 
+                                <div class="input-field inline">
+                                  <input id="inputRe2"  type="number" disabled>
+                                
+        
+                                </div>
+                              </div>
+                        </div>
+                       
+                        <div class="row">
+                            <div class="col s6">
+                                <span id="result3">6 meses / 5 días:</span> 
+                              <div class="input-field inline">
+                                <input id="inputRe3" type="number" disabled>
+                                
+                              </div>
+                            </div>
+        
+                            <div class="col s6">
+                                <span id="result4">1 año / 1 semana:</span> 
+                                <div class="input-field inline">
+                                  <input id="inputRe4" type="number" disabled>
+                                 
+        
+                                </div>
+                            </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+                </div>
+            </div>
+
+    </div>
+</div>
+
+
+
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+  });
+
+
+    function validate(){
+        let generationsMin = parseInt(document.getElementById("minG").value);
+        let generationsMax = parseInt(document.getElementById("maxG").value);
+        let grades = parseInt(document.getElementById("seleG").value);
+        let stagnation = parseInt(document.getElementById("maxE").value);
+        let error = parseInt(document.getElementById("minE").value);
+
+        if (document.getElementById("maxG").value == "" || generationsMax <= 0 ){
+
+            alert('debes de rellenar todos los campos y no deben tener valor "0" ');
+
+        }else if(document.getElementById("seleG").value == "" || grades <= 0 ){
+
+            alert('debes de rellenar todos los campos y no deben tener valor "0" ');
+
+        }else if(document.getElementById("minG").value =="" || generationsMin <= 0 ){
+
+            alert('debes de rellenar todos los campos y no deben tener valor "0" ');
+
+        }else if(document.forms["myForm"]["maxE"].value == ""  || stagnation <= 0){
+
+            alert('debes de rellenar todos los campos y no deben tener valor "0" ');
+
+        }else if( document.forms["myForm"]["minE"].value == ""  || error <= 0){
+
+            alert('debes de rellenar todos los campos y no deben tener valor "0" ');
+
+        }else if(generationsMax < generationsMin){
+           
+            alert('el número de generaciones mínimas ingresada ('+ document.getElementById("minG").value +') debe ser menor al número de generaciones ('+ document.getElementById("maxG").value+')')
+
+        }else if(generationsMax < stagnation){
+            
+            alert("el número de estancamiento debe ser menor al número de generaciones");
+
+        }else{
+            send();
+            show();
+            intervalManager(true)
+            intervalManager2(true)
+        }
+    }
+
+    
+    eel.remove_gif();
+
+    eel.expose(send)
+    function send(){
+        document.getElementById('buttonAction').setAttribute("disabled",true);
+        document.getElementById('selectGraf').disabled=true;
+        document.getElementById('modalButton').disabled=true;
+        document.getElementById('reportButton').disabled=true;
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+        
+
+        var results = new Object();
+        
+        results[0]=document.getElementById('maxG').value;
+        results[1]=document.getElementById('minG').value;
+        results[2]=document.getElementById('maxE').value;
+
+        var radios = document.getElementsByName('time');
+
+        for (var i= 0, length = radios.length; i <length;i++){
+            if (radios[i].checked){
+                results[3]= radios[i].value;
+                break;
+            }
+        }
+
+        results[4]=document.getElementById('seleG').options[document.getElementById('seleG').selectedIndex].value;
+        results[5]=document.getElementById('minE').value;
+        //eel.carnitas(results[0], results[1], results[2], results[3], results[4]);
+
+        changeResults(results[3]);
+        
+        getResults(results);
+
+   
+
+    }
+    
+
+
+     async function getResults(results){
+        
+        let aja = await eel.carnitas(results[0], results[1], results[2], results[3], results[4], results[5])();
+        console.log(aja);
+
+        document.getElementById("inputRe1").value = aja[0];
+        document.getElementById("inputRe2").value = aja[1];
+        document.getElementById("inputRe3").value = aja[2];
+        document.getElementById("inputRe4").value = aja[3];
+
+
+    }
+
+   
+
+    function show(){
+        document.getElementById("gif").style.display="block";
+        document.getElementById("images").style.display="none";
+    }
+
+    function changeTheImage(){
+        let d = new Date();
+        let n = d.getDate();
+        document.getElementById("imageChange").src="./img/generaciones.png?random="+n;
+    }
+
+    function changeTheImage1(){
+        let d = new Date();
+        let n = d.getDate();
+        document.getElementById("imageChange").src="./img/gradosV2.png?random="+n;
+    }
+
+    function changeTheImage2(){
+        let d = new Date();
+        let n = d.getDate();
+        document.getElementById("imageChange").src="./img/minGen.png?random="+n;
+    }
+
+    function changeTheImage3(){
+        let d = new Date();
+        let n = d.getDate();
+        document.getElementById("imageChange").src="./img/estancamiento.png?random="+n;
+    }
+
+    function changeTheImage4(){
+        let d = new Date();
+        let n = d.getDate();
+        document.getElementById("imageChange").src="./img/error.png?random="+n;
+    }
+
+
+    var stopInterval = null;
+
+    function intervalManager(flag){
+        if(flag){
+            stopInterval = setInterval(myInterval,500);
+        }else{
+            clearInterval(stopInterval);
+        }
+    }
+
+    var stopInterval2 = null;
+
+    function intervalManager2(flag){
+        if(flag){
+            stopInterval2 = setInterval(myInterval2,500);
+        }else{
+            clearInterval(stopInterval2);
+        }
+    }
+
+
+
+    async function myInterval(){
+        let returnValue = await eel.check_gif('C:/Users/Paredon/Desktop/tesis/web/img')(); 
+        console.log(returnValue);
+        if (returnValue){
+            document.getElementById('selectGraf').disabled=false;
+            document.getElementById('restartButton').disabled=false;
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        
+            
+            let graph = document.getElementById('selectGraf').value;
+            console.log(graph);
+            let d = new Date();
+            let n = d.getDate();
+            if(graph == 0){
+                document.getElementById('gifChange').src="./img/bar.gif?random="+n;
+               intervalManager(false);
+            }else if(graph == 1){
+                document.getElementById('gifChange').src="./img/scatter.gif?random="+n;
+                intervalManager(false);
+            }else if(graph == 2){
+                document.getElementById('gifChange').src="./img/ultimateBar.png?random="+n;
+                intervalManager(false);
+            }else{
+                document.getElementById('gifChange').src="./img/ultimate.png?random="+n;
+                intervalManager(false);
+            }
+            
+           
+        }else{
+            document.getElementById('gifChange').src="./img/waiting.gif";
+        }
+    }
+
+    async function myInterval2() {
+        let returnValueRepo = await eel.check_report('C:/Users/Paredon/Desktop/tesis/web')();
+        if (returnValueRepo){
+            document.getElementById('reportButton').disabled=false;
+            document.getElementById('modalButton').disabled=false;
+            document.getElementById('resultsButton').disabled=false;
+        }
+    }
+
+    function changeResults(radioResults){
+        console.log(radioResults);
+        if(radioResults == 0){
+            document.getElementById("result1").innerHTML = "1 Mes: ";
+            document.getElementById("result2").innerHTML = "3 Meses: ";
+            document.getElementById("result3").innerHTML = "6 Meses: ";
+            document.getElementById("result4").innerHTML = "1 Año: ";
+
+        }else{
+            document.getElementById("result1").innerHTML = "1 Día: ";
+            document.getElementById("result2").innerHTML = "3 Días: ";
+            document.getElementById("result3").innerHTML = "5 Días: ";
+            document.getElementById("result4").innerHTML = "1 Semana: ";
+
+            
+
+        }
+    }
+
+    async function generateReport(){
+        await eel.open_report("C:/Users/Paredon/Desktop/tesis")
+        intervalManager2(false)
+    }
+
+    function openResults(){
+        eel.open_results("C:/Users/Paredon/Desktop/tesis/data/res")
+    }
+
+
+    eel.expose(rubroValues)
+    function rubroValues(){
+        let regex = /^[0-9 .,]+$/;
+        let regex1 =/^[0-9 /,]+$/;
+        let dateRubroa = new Array();
+        let valueRubroa = new Array();
+
+        let rubroName = document.getElementById("rubroName").value;
+        let valueRubro = document.getElementById("rubroValue").value;
+        let dateRubro = document.getElementById("rubroDate").value;
+        
+        dateRubroa = dateRubro.split(", ");
+        valueRubroa = valueRubro.split(", ");
+
+
+       const newDate =  dateRubroa.map(sugoi => sugoi.replace(/\s/g, ''));
+       const newValue = valueRubroa.map(sugoi => sugoi.replace(/\s/g, ''));
+
+
+
+       if(rubroName == "" || newDate == "" || newValue == "" ){
+            alert("Debe ingresar un nombre, fechas y valores para el rubro");
+
+        }else if(newDate.length != newValue.length){
+            alert("El número de los valores como la fecha del valor del rubro, deben coincidir. Ejemplo: Valores: 300, 400 / Fechas: 1995/01/02, 1997/06/12");
+        }else if(!regex.test(valueRubro)){
+            alert("El valor del rubro es erroneo, solo se permiten numeros, . y ,");
+        
+        }else if(!regex1.test(dateRubro)){
+            alert("la fecha del rubro es erronea, solo se permiten numeros, / y ,");
+        }else{
+            eel.item_creator(newValue,newDate,rubroName);
+
+        }
+
+        
+        
+        
+    }
+
+
+
+
+  
+</script>
+
+
+</body>
+</html>

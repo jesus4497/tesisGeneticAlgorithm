@@ -1,0 +1,50 @@
+.align{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.radioMargin{
+    margin-left: 40px;
+}
+
+.borderDivs{
+    border: 1px solid grey;
+    border-radius: 5px; 
+    margin-left: 10px;
+}
+
+.marginDivs{
+    margin-left: 5000000px;
+    margin-top: 10px;
+}
+
+.radiosTop{
+    margin-top: 360px;
+    
+    
+}
+
+#buttonRubro{
+    margin-left: 15px;
+}
+
+#rubroHelp{
+    text-align: center;
+    
+}
+
+.gif{
+    display: none;
+}
+
+.finalResults{
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+#tittle{
+    text-align: center;
+    margin-bottom: 35px;
+    margin-top: 0;
+    
+}
